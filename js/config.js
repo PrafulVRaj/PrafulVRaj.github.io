@@ -22,7 +22,6 @@ const CONFIG = {
     { icon: '📧', label: 'Email',    value: 'prafulvraj@gmail.com',              href: 'mailto:prafulvraj@gmail.com' },
     { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/praful-v-raj',   href: 'https://www.linkedin.com/in/praful-v-raj-a6a525307' },
     { icon: '🐙', label: 'GitHub',   value: 'github.com/PrafulVRaj',        href: 'https://github.com/PrafulVRaj' },
-    { icon: '🌐', label: 'Website',  value: 'alexjohnson.dev',               href: '#' },
   ],
 
   /* ── Skills ───────────────────────────────────────────────── */
