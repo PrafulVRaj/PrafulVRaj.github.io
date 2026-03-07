@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════
+   desktop.css  —  Desktop background, grain, icons
+═══════════════════════════════════════════════════ */
+
+#desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ── Wallpaper layer (swapped by wallpaper.js) ── */
+#wallpaper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+/* Subtle vignette */
+#wallpaper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+}
+
+/* ── Wallpaper presets ── */
+.wp-bloom {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 60%, rgba(0,120,212,0.50) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 75% 25%, rgba(138,43,226,0.40) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 60% 80%, rgba(0,180,120,0.30)  0%, transparent 50%),
+    linear-gradient(135deg, #050818 0%, #0d1525 50%, #1a0630 100%);
+}
+.wp-sunset {
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 100%, rgba(255,80,0,0.60)   0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20%  60%, rgba(255,180,0,0.35)  0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 80%  30%, rgba(200,0,100,0.35)  0%, transparent 50%),
+    linear-gradient(180deg, #08001a 0%, #1a0520 40%, #3d0c05 100%);
+}
+.wp-aurora {
+  background:
+    radial-gradient(ellipse 100% 50% at 50%  0%, rgba(0,220,130,0.40)  0%, transparent 55%),
+    radial-gradient(ellipse  80% 60% at 10% 40%, rgba(0,120,212,0.35)  0%, transparent 50%),
+    radial-gradient(ellipse  60% 50% at 90% 60%, rgba(130,0,220,0.30)  0%, transparent 50%),
+    linear-gradient(180deg, #001a10 0%, #060d1a 60%, #0a0010 100%);
+}
+.wp-midnight {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,60,120,0.40) 0%, transparent 70%),
+    linear-gradient(135deg, #020408, #060c18);
+}
+.wp-city {
+  background:
+    radial-gradient(ellipse 100% 55% at 20% 0%,  rgba(220, 100, 80, 0.55)  0%, transparent 60%),
+    radial-gradient(ellipse  80% 40% at 0%  30%,  rgba(200, 80,  60, 0.40)  0%, transparent 55%),
+    radial-gradient(ellipse  60% 50% at 70% 10%,  rgba(120, 80, 160, 0.50)  0%, transparent 55%),
+    radial-gradient(ellipse 100% 60% at 50% 100%, rgba(30,  20,  50, 0.80)  0%, transparent 60%),
+    linear-gradient(185deg, #b06060 0%, #7a4a80 25%, #3a2860 55%, #1a1030 80%, #0a0818 100%);
+}
+
+/* ── Noise grain overlay ── */
+#grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Desktop icon grid ── */
+#icon-grid {
+  position: absolute;
+  top: calc(var(--bar-h) + 12px);
+  left: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.desk-icon {
+  width: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 6px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+  position: relative;
+}
+
+.desk-icon:hover  { background: rgba(255,255,255,0.08); }
+.desk-icon:active { transform: scale(0.94); background: rgba(255,255,255,0.13); }
+
+.desk-icon.selected {
+  background: rgba(0,120,212,0.25);
+  outline: 1px solid rgba(0,120,212,0.50);
+}
+
+.di-icon {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  border-radius: 10px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+.di-label {
+  font-size: 11.5px;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.7);
+}

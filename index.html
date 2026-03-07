@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Portfolio-OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/variables.css"/>
+<link rel="stylesheet" href="css/boot.css"/>
+<link rel="stylesheet" href="css/login.css"/>
+<link rel="stylesheet" href="css/loading.css"/>
+<link rel="stylesheet" href="css/desktop.css"/>
+<link rel="stylesheet" href="css/windows.css"/>
+<link rel="stylesheet" href="css/taskbar.css"/>
+<link rel="stylesheet" href="css/ui.css"/>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     BOOT SCREEN
+══════════════════════════════════════════ -->
+<div id="boot-screen" onclick="bootClick()">
+  <div class="boot-arch-logo">
+    <img src="assets/logo.png" width="120" height="120"
+         style="object-fit:contain;border-radius:16px;">
+  </div>
+  <div class="boot-click-hint">Click to boot</div>
+  <div class="boot-progress-track">
+    <div class="boot-progress-bar" id="boot-progress-bar"></div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-inner">
+    <div class="login-users" id="login-users"></div>
+    <div class="login-avatar-wrap">
+      <div class="login-avatar" id="login-avatar-img"></div>
+      <div class="login-username" id="login-uname"></div>
+    </div>
+    <div class="login-pw-wrap" id="pw-wrap">
+      <input id="login-pw" type="password" placeholder="Enter Password" autocomplete="off"/>
+      <button class="login-pw-icon" onclick="doLogin()">🔑</button>
+    </div>
+    <div class="login-hint" onclick="doLogin()">Click to enter &nbsp;(PS: password is empty)</div>
+  <div class="login-sys-btns">
+    <button class="sys-btn btn-sleep" onclick="sysBtnAction('sleep')">
+      <div class="sys-btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#89b4fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </div>
+      <span>Sleep</span>
+    </button>
+    <button class="sys-btn btn-restart" onclick="sysBtnAction('restart')">
+      <div class="sys-btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a6e3a1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"/>
+          <path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+        </svg>
+      </div>
+      <span>Restart</span>
+    </button>
+    <button class="sys-btn btn-shut" onclick="sysBtnAction('shutdown')">
+      <div class="sys-btn-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f38ba8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="2" x2="12" y2="12"/>
+          <path d="M6.46 6.46a8 8 0 1 0 11.08 0"/>
+        </svg>
+      </div>
+      <span>Shut Down</span>
+    </button>
+  </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="ld-greeting" id="ld-greeting">Hi.</div>
+  <div class="ld-spinner-wrap">
+    <div class="ld-dot"></div><div class="ld-dot"></div>
+    <div class="ld-dot"></div><div class="ld-dot"></div>
+    <div class="ld-dot"></div>
+  </div>
+  <div class="ld-message"><div class="ld-msg-inner" id="ld-msg-inner">Getting things ready</div></div>
+  <div class="ld-clock">
+    <div class="ld-clock-time" id="ld-clock-time">00:00</div>
+    <div class="ld-clock-date" id="ld-clock-date">Monday, January 1</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     DESKTOP
+══════════════════════════════════════════ -->
+<div id="desktop" style="opacity:0;pointer-events:none;">
+  <div id="wallpaper"></div>
+  <div id="grain"></div>
+
+  <!-- ─── Portfolio windows ─── -->
+
+  <div id="win-about" class="win hidden" style="width:500px;height:380px;top:80px;left:150px;">
+    <div class="win-bar" data-win="about"><span class="win-bar-icon">👤</span><div class="win-bar-title">About Me</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('about')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('about')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('about')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-about"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-projects" class="win hidden" style="width:580px;height:430px;top:110px;left:220px;">
+    <div class="win-bar" data-win="projects"><span class="win-bar-icon">🗂️</span><div class="win-bar-title">Projects</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('projects')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('projects')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('projects')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-projects"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-skills" class="win hidden" style="width:440px;height:430px;top:90px;left:280px;">
+    <div class="win-bar" data-win="skills"><span class="win-bar-icon">⚡</span><div class="win-bar-title">Skills</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('skills')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('skills')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('skills')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-skills"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-contact" class="win hidden" style="width:400px;height:340px;top:130px;left:250px;">
+    <div class="win-bar" data-win="contact"><span class="win-bar-icon">📬</span><div class="win-bar-title">Contact</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('contact')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('contact')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('contact')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-contact"></div><div class="win-resize"></div>
+  </div>
+
+  <!-- ─── Games folder window ─── -->
+
+  <div id="win-games" class="win hidden" style="width:400px;height:340px;top:90px;left:200px;">
+    <div class="win-bar" data-win="games"><span class="win-bar-icon">🎮</span><div class="win-bar-title">Games</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('games')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('games')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('games')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-games"></div><div class="win-resize"></div>
+  </div>
+
+  <!-- ─── Individual game windows ─── -->
+
+  <div id="win-snake" class="win hidden" style="width:430px;height:500px;top:80px;left:180px;">
+    <div class="win-bar" data-win="snake"><span class="win-bar-icon">🐍</span><div class="win-bar-title">Snake</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('snake')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('snake')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('snake')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-snake"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-minesweeper" class="win hidden" style="width:440px;height:520px;top:70px;left:200px;">
+    <div class="win-bar" data-win="minesweeper"><span class="win-bar-icon">💣</span><div class="win-bar-title">Minesweeper</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('minesweeper')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('minesweeper')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('minesweeper')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-minesweeper"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-tictactoe" class="win hidden" style="width:380px;height:480px;top:80px;left:220px;">
+    <div class="win-bar" data-win="tictactoe"><span class="win-bar-icon">⭕</span><div class="win-bar-title">Tic Tac Toe</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('tictactoe')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('tictactoe')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('tictactoe')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-tictactoe"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-flappybird" class="win hidden" style="width:370px;height:510px;top:60px;left:230px;">
+    <div class="win-bar" data-win="flappybird"><span class="win-bar-icon">🐦</span><div class="win-bar-title">Flappy Bird</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('flappybird')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('flappybird')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('flappybird')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-flappybird"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-chess" class="win hidden" style="width:540px;height:430px;top:70px;left:160px;">
+    <div class="win-bar" data-win="chess"><span class="win-bar-icon">♟️</span><div class="win-bar-title">Chess</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('chess')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('chess')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('chess')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-chess"></div><div class="win-resize"></div>
+  </div>
+
+  <!-- ─── Media windows ─── -->
+
+  <div id="win-musicplayer" class="win hidden" style="width:560px;height:580px;top:60px;left:180px;">
+    <div class="win-bar" data-win="musicplayer"><span class="win-bar-icon">🎵</span><div class="win-bar-title">Music Player</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('musicplayer')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('musicplayer')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('musicplayer')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-musicplayer" style="overflow:hidden;"></div><div class="win-resize"></div>
+  </div>
+
+  <div id="win-mediaplayer" class="win hidden" style="width:680px;height:500px;top:70px;left:160px;">
+    <div class="win-bar" data-win="mediaplayer"><span class="win-bar-icon">🎬</span><div class="win-bar-title">Media Player</div>
+      <div class="wc-group">
+        <button class="wc-btn" onclick="minWin('mediaplayer')"><svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1.2" fill="currentColor"/></svg></button>
+        <button class="wc-btn" onclick="toggleMaxWin('mediaplayer')"><svg width="10" height="10" viewBox="0 0 10 10"><rect x=".5" y=".5" width="9" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="wc-btn wc-close" onclick="closeWin('mediaplayer')"><svg width="10" height="10" viewBox="0 0 10 10"><line x1="0" y1="0" x2="10" y2="10" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="0" x2="0" y2="10" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      </div>
+    </div>
+    <div class="win-body" id="body-mediaplayer" style="overflow:hidden;"></div><div class="win-resize"></div>
+  </div>
+
+</div><!-- /#desktop -->
+
+
+<!-- ══════════════════════════════════════════
+     TOP STATUS BAR
+══════════════════════════════════════════ -->
+<div id="topbar" style="opacity:0;pointer-events:none;">
+  <div id="tb-left">
+    <div id="tb-arch-logo" onclick="toggleStartMenu()">
+      <svg width="14" height="14" viewBox="0 0 100 100" fill="none">
+        <path d="M50 5 L95 90 H5 Z"   fill="#1793d1" opacity="0.9"/>
+        <path d="M50 22 L80 82 H37 Z" fill="#0a0a0a"/>
+        <path d="M50 22 L63 82 H50 Z" fill="#1793d1" opacity="0.55"/>
+      </svg>
+    </div>
+    <span id="tb-workspace">1 : Portfolio</span>
+    <span id="tb-active-app"></span>
+  </div>
+  <div id="tb-center">
+    <div class="tb-stat stat-cpu" ><span class="tb-stat-val" id="stat-cpu">3%</span></div>
+    <div class="tb-stat stat-ram" ><span class="tb-stat-val" id="stat-ram">1.2GB</span></div>
+    <div class="tb-stat stat-temp"><span class="tb-stat-val" id="stat-temp">45°C</span></div>
+  </div>
+  <div id="tb-right">
+    <div class="tb-right-item">
+      <span id="batt-pct">59%</span>
+      <div class="batt-bar"><div class="batt-fill" id="batt-fill" style="width:59%"></div></div>
+    </div>
+    <div class="tb-right-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/>
+      </svg>
+      <span>Connected</span>
+    </div>
+    <div class="tb-right-item" onclick="toggleStartMenu()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span>Search</span>
+    </div>
+    <div class="tb-right-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+      </svg>
+      <span>100%</span>
+    </div>
+    <div id="tb-clock">
+      <span id="clk-date-short"></span>&nbsp;&nbsp;<span id="clk-time"></span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     BOTTOM DOCK
+══════════════════════════════════════════ -->
+<div id="dock" style="opacity:0;pointer-events:none;">
+
+  <button class="dock-btn" id="tb-arch-logo" onclick="toggleStartMenu()">
+    <div class="dock-icon di-arch">
+      <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
+        <path d="M50 5 L95 90 H5 Z"   fill="#1793d1" opacity="0.95"/>
+        <path d="M50 22 L80 82 H37 Z" fill="#0a0c10"/>
+        <path d="M50 22 L63 82 H50 Z" fill="#1793d1" opacity="0.55"/>
+      </svg>
+    </div>
+    <div class="dock-label">Launcher</div>
+  </button>
+
+  <div class="dock-sep"></div>
+
+  <button class="dock-btn" id="dock-about"    onclick="toggleWinFromTaskbar('about')">
+    <div class="dock-icon di-about">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60a8f0" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="8" r="4" fill="#60a8f0" opacity="0.2"/><circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="#60a8f0" opacity="0.1" stroke="#60a8f0"/>
+      </svg>
+    </div>
+    <div class="dock-label">About Me</div>
+  </button>
+
+  <button class="dock-btn" id="dock-projects" onclick="toggleWinFromTaskbar('projects')">
+    <div class="dock-icon di-projects">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#78c878" stroke-width="1.8" stroke-linecap="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" fill="#78c878" opacity="0.1"/><rect x="2" y="7" width="20" height="14" rx="2"/>
+        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        <line x1="12" y1="12" x2="12" y2="17"/><line x1="9.5" y1="14.5" x2="14.5" y2="14.5"/>
+      </svg>
+    </div>
+    <div class="dock-label">Projects</div>
+  </button>
+
+  <button class="dock-btn" id="dock-skills"   onclick="toggleWinFromTaskbar('skills')">
+    <div class="dock-icon di-skills">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0c060" stroke-width="1.8" stroke-linecap="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#f0c060" opacity="0.15"/>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <div class="dock-label">Skills</div>
+  </button>
+
+  <button class="dock-btn" id="dock-contact"  onclick="toggleWinFromTaskbar('contact')">
+    <div class="dock-icon di-contact">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d080d0" stroke-width="1.8" stroke-linecap="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="#d080d0" opacity="0.1"/>
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+    <div class="dock-label">Contact</div>
+  </button>
+
+  <div class="dock-sep"></div>
+
+  <!-- Terminal -->
+  <button class="dock-btn" onclick="showToast('💻','Terminal','Coming soon!')">
+    <div class="dock-icon di-terminal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a0c8a0" stroke-width="1.8" stroke-linecap="round">
+        <rect x="2" y="4" width="20" height="16" rx="2" fill="rgba(160,200,160,0.06)"/>
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="8,9 4,12 8,15"/><line x1="12" y1="15" x2="20" y2="15"/>
+      </svg>
+    </div>
+    <div class="dock-label">Terminal</div>
+  </button>
+
+</div><!-- /#dock -->
+
+
+<!-- ══════════════════════════════════════════
+     START MENU
+══════════════════════════════════════════ -->
+<div id="start-menu">
+  <input id="sm-search" type="text" placeholder="🔍  Search apps, files, settings" autocomplete="off"/>
+  <div class="sm-label">Pinned</div>
+  <div class="sm-app-grid">
+    <div class="sm-app-item" onclick="openFromSM('about')"      ><div class="sm-emoji">👤</div><div class="sm-name">About Me</div></div>
+    <div class="sm-app-item" onclick="openFromSM('projects')"   ><div class="sm-emoji">🗂️</div><div class="sm-name">Projects</div></div>
+    <div class="sm-app-item" onclick="openFromSM('skills')"     ><div class="sm-emoji">⚡</div><div class="sm-name">Skills</div></div>
+    <div class="sm-app-item" onclick="openFromSM('contact')"    ><div class="sm-emoji">📬</div><div class="sm-name">Contact</div></div>
+    <div class="sm-app-item" onclick="openFromSM('games')"      ><div class="sm-emoji">🎮</div><div class="sm-name">Games</div></div>
+    <div class="sm-app-item" onclick="openFromSM('musicplayer')"><div class="sm-emoji">🎵</div><div class="sm-name">Music</div></div>
+    <div class="sm-app-item" onclick="openFromSM('mediaplayer')"><div class="sm-emoji">🎬</div><div class="sm-name">Media</div></div>
+    <div class="sm-app-item" onclick="openWpPicker()"           ><div class="sm-emoji">🖼️</div><div class="sm-name">Wallpaper</div></div>
+    <div class="sm-app-item" onclick="showToast('⚙️','Settings','Coming soon!')"><div class="sm-emoji">⚙️</div><div class="sm-name">Settings</div></div>
+    <div class="sm-app-item" onclick="showToast('💻','Terminal','Coming soon!')"><div class="sm-emoji">💻</div><div class="sm-name">Terminal</div></div>
+  </div>
+  <div class="sm-footer">
+    <div class="sm-user"><div class="sm-uavatar" id="sm-uavatar"></div><div class="sm-uname" id="sm-uname"></div></div>
+    <div class="sm-power-group">
+      <button class="sm-sys-btn" onclick="sysBtnAction('sleep')" title="Sleep">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button class="sm-sys-btn" onclick="sysBtnAction('restart')" title="Restart">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"/>
+          <path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+        </svg>
+      </button>
+      <button class="sm-sys-btn sm-sys-shut" onclick="sysBtnAction('shutdown')" title="Shut Down">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="2" x2="12" y2="12"/>
+          <path d="M6.46 6.46a8 8 0 1 0 11.08 0"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     CONTEXT MENU
+══════════════════════════════════════════ -->
+<div id="ctx-menu">
+  <div class="ctx-item" onclick="ctxAction('view')"       ><span class="ctx-icon">👁️</span><span class="ctx-label">View</span></div>
+  <div class="ctx-item" onclick="ctxAction('refresh')"    ><span class="ctx-icon">🔄</span><span class="ctx-label">Refresh</span><span class="ctx-shortcut">F5</span></div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="openWpPicker()"          ><span class="ctx-icon">🖼️</span><span class="ctx-label">Change wallpaper</span></div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="openFromSM('games')"     ><span class="ctx-icon">🎮</span><span class="ctx-label">Games</span></div>
+  <div class="ctx-item" onclick="openFromSM('musicplayer')"><span class="ctx-icon">🎵</span><span class="ctx-label">Music Player</span></div>
+  <div class="ctx-item" onclick="openFromSM('mediaplayer')"><span class="ctx-icon">🎬</span><span class="ctx-label">Media Player</span></div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item ctx-danger" onclick="closeCtx()"><span class="ctx-icon">✕</span><span class="ctx-label">Close menu</span></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     WALLPAPER PICKER
+══════════════════════════════════════════ -->
+<div id="wp-picker" onclick="closeWpPickerBg(event)">
+  <div id="wp-panel">
+    <h3>🖼️ Choose Wallpaper</h3>
+    <div class="wp-grid" id="wp-grid"></div>
+    <div class="wp-actions">
+      <button class="wp-btn secondary" onclick="closeWpPicker()">Cancel</button>
+      <button class="wp-btn primary"   onclick="applyWallpaper()">Apply</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     TOAST AREA
+══════════════════════════════════════════ -->
+<div id="toast-area"></div>
+
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS  (order matters)
+══════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/loading.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/windows.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/boot.js"></script>
+<script src="js/main.js"></script>
+<!-- Games — all in apps/games/ -->
+<script src="apps/games/snake.js"></script>
+<script src="apps/games/minesweeper.js"></script>
+<script src="apps/games/tictactoe.js"></script>
+<script src="apps/games/flappybird.js"></script>
+<script src="apps/games/chess.js"></script>
+<!-- Media apps -->
+<script src="js/video-library.js"></script>
+<script src="apps/music-player.js"></script>
+<script src="apps/media-player.js"></script>
+
+</body>
+</html>

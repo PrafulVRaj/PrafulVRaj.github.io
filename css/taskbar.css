@@ -1,0 +1,215 @@
+/* ═══════════════════════════════════════════════════
+   taskbar.css  —  Arch Linux style
+   • Slim transparent top status bar
+   • Floating centered bottom dock
+═══════════════════════════════════════════════════ */
+
+:root {
+  --bar-h:      28px;
+  --dock-h:     64px;
+  --bar-bg:     rgba(10, 10, 14, 0.82);
+  --bar-border: rgba(255,255,255,0.07);
+}
+
+/* ══════════════════════════════════════════════════
+   TOP STATUS BAR
+══════════════════════════════════════════════════ */
+#topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--bar-h);
+  z-index: 9000;
+  background: var(--bar-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid var(--bar-border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.80);
+  user-select: none;
+}
+
+#tb-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#tb-arch-logo {
+  display: flex; align-items: center;
+  cursor: pointer; padding: 2px 4px;
+  border-radius: 4px;
+  transition: background var(--dur-fast);
+}
+#tb-arch-logo:hover { background: rgba(255,255,255,0.08); }
+
+#tb-workspace {
+  font-size: 11.5px; color: rgba(255,255,255,0.75);
+  padding: 2px 6px; border-radius: 4px;
+  cursor: default;
+}
+
+#tb-active-app {
+  font-size: 11.5px; color: rgba(255,255,255,0.50);
+}
+
+#tb-center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px;
+}
+
+.tb-stat {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11.5px; color: rgba(255,255,255,0.60);
+}
+
+.tb-stat-val { font-variant-numeric: tabular-nums; }
+.stat-cpu  { color: #a6e3a1; }
+.stat-ram  { color: #89b4fa; }
+.stat-temp { color: #f38ba8; }
+
+#tb-right {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+
+.tb-right-item {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11.5px; color: rgba(255,255,255,0.72);
+  cursor: pointer; padding: 2px 5px; border-radius: 4px;
+  transition: background var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+}
+.tb-right-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+/* battery */
+.batt-bar {
+  width: 20px; height: 9px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 2px;
+  padding: 1.5px;
+  position: relative;
+  display: flex; align-items: center;
+}
+.batt-bar::after {
+  content: ''; position: absolute;
+  right: -3px; top: 50%;
+  transform: translateY(-50%);
+  width: 2px; height: 4px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 0 1px 1px 0;
+}
+.batt-fill {
+  height: 100%; border-radius: 1px;
+  background: #a6e3a1; transition: width 1s;
+}
+
+#tb-clock {
+  font-size: 11.5px; color: rgba(255,255,255,0.80);
+  text-align: right; cursor: pointer;
+  padding: 2px 5px; border-radius: 4px;
+  white-space: nowrap;
+  transition: background var(--dur-fast);
+}
+#tb-clock:hover { background: rgba(255,255,255,0.08); }
+
+/* ══════════════════════════════════════════════════
+   BOTTOM DOCK
+══════════════════════════════════════════════════ */
+#dock {
+  position: fixed;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 9000;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 8px 14px 10px;
+  background: rgba(12, 12, 18, 0.74);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.55),
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.dock-sep {
+  width: 1px; height: 32px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 4px; align-self: center;
+}
+
+.dock-btn {
+  position: relative;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent; cursor: pointer;
+  border-radius: 12px;
+  transform-origin: bottom center;
+  transition: transform 0.18s var(--ease-win), background var(--dur-fast);
+  padding: 0; flex-shrink: 0;
+}
+.dock-btn:hover  { transform: scale(1.28) translateY(-6px); background: rgba(255,255,255,0.05); }
+.dock-btn:active { transform: scale(1.10) translateY(-2px); }
+.dock-btn.neighbor-1 { transform: scale(1.15) translateY(-4px); }
+.dock-btn.neighbor-2 { transform: scale(1.06) translateY(-2px); }
+
+.dock-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  transition: box-shadow var(--dur-fast);
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.dock-btn:hover .dock-icon { box-shadow: 0 6px 20px rgba(0,0,0,0.55); }
+
+/* running dot */
+.dock-btn::after {
+  content: ''; position: absolute;
+  bottom: -5px; left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,0.75);
+  transition: transform var(--dur-med) var(--ease-win), opacity var(--dur-fast);
+  opacity: 0;
+}
+.dock-btn.running::after    { transform: translateX(-50%) scale(1); opacity: 1; }
+.dock-btn.focused-app::after { background: #fff; }
+
+/* tooltip */
+.dock-label {
+  position: absolute;
+  bottom: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(16,16,22,0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px; padding: 4px 10px;
+  font-size: 11.5px; color: rgba(255,255,255,0.90);
+  white-space: nowrap; pointer-events: none; opacity: 0;
+  transition: opacity 0.14s, transform 0.14s var(--ease-win);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4); z-index: 9999;
+}
+.dock-btn:hover .dock-label {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
+/* icon backgrounds */
+.di-arch     { background: linear-gradient(145deg, #1a2035, #0d1520); }
+.di-about    { background: linear-gradient(145deg, #1c3050, #101e35); }
+.di-projects { background: linear-gradient(145deg, #1a2d1a, #0f1d0f); }
+.di-skills   { background: linear-gradient(145deg, #2e2510, #1c1608); }
+.di-contact  { background: linear-gradient(145deg, #301830, #1c0e1c); }
+.di-terminal { background: linear-gradient(145deg, #10141a, #080c12); }
+.di-github   { background: linear-gradient(145deg, #18181e, #0c0c12); }
+.di-vscode   { background: linear-gradient(145deg, #192840, #0f1828); }

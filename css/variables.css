@@ -1,0 +1,75 @@
+/* ═══════════════════════════════════════════════════
+   variables.css  —  Design tokens & CSS custom props
+   Edit this file to change colors, timing, spacing
+═══════════════════════════════════════════════════ */
+
+:root {
+  /* ── Accent / Brand ── */
+  --accent:        #0078d4;
+  --accent-lite:   #60cdff;
+  --accent-glow:   rgba(0, 120, 212, 0.35);
+
+  /* ── Glass surfaces ── */
+  --glass:         rgba(28, 28, 32, 0.78);
+  --glass-lite:    rgba(255, 255, 255, 0.06);
+  --glass-hover:   rgba(255, 255, 255, 0.10);
+  --glass-active:  rgba(255, 255, 255, 0.15);
+
+  /* ── Borders ── */
+  --border:        rgba(255, 255, 255, 0.10);
+  --border-focus:  rgba(0, 120, 212, 0.70);
+
+  /* ── Text ── */
+  --text:          #f3f3f3;
+  --text-dim:      rgba(255, 255, 255, 0.55);
+  --text-dimmer:   rgba(255, 255, 255, 0.35);
+
+  /* ── Layout ── */
+  --taskbar-h:     48px;
+
+  /* ── Radii ── */
+  --radius:        8px;
+  --radius-lg:     12px;
+  --radius-xl:     16px;
+
+  /* ── Blur ── */
+  --blur:          blur(40px) saturate(160%);
+
+  /* ── Shadows ── */
+  --shadow-win:    0 12px 40px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-popup:  0 16px 50px rgba(0,0,0,0.65), 0 2px 10px rgba(0,0,0,0.4);
+
+  /* ── Animation durations ── */
+  --dur-fast:  120ms;
+  --dur-med:   200ms;
+  --dur-slow:  280ms;
+
+  /* ── Easing curves ── */
+  --ease-win:  cubic-bezier(0.16, 1, 0.3, 1);   /* spring-like */
+  --ease-out:  cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in:   cubic-bezier(0.4, 0.0, 1, 1);
+}
+
+/* ── Global reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;          /* prevents white flash between screens */
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Global scrollbar ── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

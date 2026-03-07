@@ -1,0 +1,65 @@
+/* ═══════════════════════════════════════════════════
+   boot.css  —  Arch-style boot screen
+═══════════════════════════════════════════════════ */
+
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+  cursor: pointer;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+#boot-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-arch-logo {
+  animation: bootPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes bootPulse {
+  0%, 100% { opacity: 0.6;  transform: scale(1);    }
+  50%       { opacity: 1;    transform: scale(1.06); }
+}
+
+.boot-click-hint {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.04em;
+  animation: hintFade 2.5s ease-in-out infinite;
+}
+
+@keyframes hintFade {
+  0%, 100% { opacity: 0.3; }
+  60%       { opacity: 0.8; }
+}
+
+.boot-progress-track {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.boot-progress-track.visible {
+  opacity: 1;
+}
+
+.boot-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1793d1, #a6e3a1);
+  border-radius: 2px;
+  transition: width 0.08s linear;
+}
